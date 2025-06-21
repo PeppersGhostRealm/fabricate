@@ -3,6 +3,12 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Debug Fabricate",
+      "configurations": ["Debug Backend (Node)", "Debug Frontend (Angular)"]
+    }
+  ],
   "configurations": [
     {
       "type": "node",
@@ -25,7 +31,8 @@
         "webpack:///src/*": "${workspaceFolder}/frontend/src/*",
         "webpack:///*": "${workspaceFolder}/frontend/*"
       },
-      "preLaunchTask": "Start Angular Frontend"
+      "preLaunchTask": "Start Angular Frontend",
+      "postDebugTask": "Terminate All Tasks"
     }
   ]
 }
