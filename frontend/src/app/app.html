@@ -1,1 +1,8 @@
-<router-outlet />
+@if (auth.user$ | async; as user) {
+<p>Welcome, {{ user.username }}!</p>
+<button (click)="auth.logout()">Logout</button>
+} @else {
+<button (click)="auth.loginWithDiscord()">Login with Discord</button>
+}
+
+<router-outlet></router-outlet>
