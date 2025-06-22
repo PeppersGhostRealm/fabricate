@@ -1,0 +1,17 @@
+@if (isNew) {
+  <h2>New Deck</h2>
+} @else {
+  <h2>Edit Deck</h2>
+}
+<form (ngSubmit)="save()" #f="ngForm">
+  <div>
+    <label>Name</label>
+    <input name="name" [(ngModel)]="deck.name" required />
+  </div>
+  <div>
+    <label>Content</label>
+    <textarea name="content" [(ngModel)]="deck.content" rows="10" cols="40" required></textarea>
+  </div>
+  <button type="submit" [disabled]="f.invalid">Save</button>
+  <a routerLink="/decks">Cancel</a>
+</form>

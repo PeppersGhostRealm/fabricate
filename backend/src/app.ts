@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.route";
+import deckRoutes from "./routes/decks.route";
 import pool from "./db";
 
 dotenv.config();
@@ -16,5 +17,6 @@ app.use(cookieParser());
 
 // Mount your routes under /api
 app.use("/api/auth", authRoutes);
+app.use("/api/decks", deckRoutes);
 
 export default app;

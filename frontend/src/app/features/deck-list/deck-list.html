@@ -1,0 +1,10 @@
+<h2>Your Decks</h2>
+<p><a routerLink="/decks/new">Add Deck</a></p>
+<ul>
+  @for (d of decks; track d.id) {
+    <li>
+        <a [routerLink]="['/decks', d.id, 'edit']">{{ d.name }}</a>
+        <button (click)="delete(d.id)">Delete</button>
+    </li>
+  }
+</ul>
