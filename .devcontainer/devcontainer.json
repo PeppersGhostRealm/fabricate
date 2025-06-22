@@ -1,21 +1,21 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-	"name": "Fabricate",
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
-	"remoteUser": "node",
-	"features": {
-		"ghcr.io/devcontainers-extra/features/angular-cli:2": {},
-		"ghcr.io/devcontainers-community/npm-features/typescript:1": {}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"Angular.ng-template",
-				"esbenp.prettier-vscode",
-				"dbaeumer.vscode-eslint"
-			]
-		}
-	}
+  "name": "Fabricate",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "node",
+  "features": {
+    "ghcr.io/devcontainers-extra/features/angular-cli:2": {},
+    "ghcr.io/devcontainers-community/npm-features/typescript:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Angular.ng-template",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  }
 }
