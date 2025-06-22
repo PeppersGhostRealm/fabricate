@@ -3,7 +3,7 @@
 <ul>
   @for (d of decks; track d.id) {
     <li>
-        <a [routerLink]="['/decks', d.id, 'edit']">{{ d.name }}</a>
+        <a [routerLink]="['/decks', d.id]">{{ d.name }}</a>
         <button (click)="delete(d.id)">Delete</button>
     </li>
   }

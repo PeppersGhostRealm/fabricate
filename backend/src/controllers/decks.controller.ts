@@ -77,6 +77,42 @@ export async function getDeck(
   }
 }
 
+export async function getDeckDetails(
+  req: AuthedRequest,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const result = await pool.query(
+      "SELECT id, name, content FROM decks WHERE id = $1 AND user_id = $2",
+      [req.params.id, req.user!.id]
+    );
+    if (result.rows.length === 0) {
+      res.status(404).send("Not found");
+      return;
+    }
+    const deck = result.rows[0];
+    let cards: { set: string; number: string; quantity: number }[] = [];
+    try {
+      cards = JSON.parse(deck.content);
+    } catch {
+      cards = [];
+    }
+    const detailed = await Promise.all(
+      cards.map(async (c) => {
+        const r = await pool.query(
+          "SELECT name FROM cards WHERE set_code = $1 AND number = $2",
+          [c.set, c.number]
+        );
+        return { ...c, name: r.rows.length > 0 ? r.rows[0].name : "" };
+      })
+    );
+    res.json({ id: deck.id, name: deck.name, cards: detailed });
+  } catch (err) {
+    next(err);
+  }
+}
+
 export async function createDeck(
   req: AuthedRequest,
   res: Response,

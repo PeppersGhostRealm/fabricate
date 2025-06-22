@@ -1,0 +1,27 @@
+@if (deck) {
+  <h2>{{ deck.name }}</h2>
+  <p>
+    <a [routerLink]="['/decks', deck.id, 'edit']">Edit</a>
+    <a routerLink="/decks">Back to list</a>
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Qty</th>
+        <th>Name</th>
+        <th>Set</th>
+        <th>No.</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (c of deck.cards; track c.set + c.number) {
+        <tr>
+          <td>{{ c.quantity }}</td>
+          <td>{{ c.name }}</td>
+          <td>{{ c.set }}</td>
+          <td>{{ c.number }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
