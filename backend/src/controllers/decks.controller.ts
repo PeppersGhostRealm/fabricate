@@ -23,9 +23,9 @@ async function ensureCard(set: string, number: string): Promise<string> {
 
 async function parseDeck(
   content: string
-): Promise<{ id: string; quantity: number }[]> {
+): Promise<{ set: string; number: string; quantity: number }[]> {
   const lines = content.split(/\r?\n/);
-  const cards: { id: string; quantity: number }[] = [];
+  const cards: { set: string; number: string; quantity: number }[] = [];
   const regex = /^(\d+)x?\s+(.+?)\s+\(([A-Za-z0-9]+)\)\s+(\d+[a-zA-Z]*)/;
   for (const line of lines) {
     const trimmed = line.trim();
@@ -35,8 +35,8 @@ async function parseDeck(
     const quantity = parseInt(m[1], 10);
     const set = m[3];
     const number = m[4];
-    const id = await ensureCard(set, number);
-    cards.push({ id, quantity });
+    await ensureCard(set, number);
+    cards.push({ set: set.toLowerCase(), number, quantity });
   }
   return cards;
 }
