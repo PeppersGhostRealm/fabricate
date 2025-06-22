@@ -1,1 +1,7 @@
-<p><a [routerLink]='"/decks"'>View My Decks</a></p>
+@if (auth.user$ | async; as user) {
+    <p>Welcome, {{ user.username }}!</p>
+    <button (click)="auth.logout()">Logout</button>
+    <p><a [routerLink]='"/decks"'>View My Decks</a></p>
+} @else {
+    <button (click)="auth.loginWithDiscord()">Login with Discord</button>
+}

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { discordLogin, discordCallback, getMe } from '../controllers/auth.controller';
+import { discordLogin, discordCallback, getMe, logout } from '../controllers/auth.controller';
 
 const router = Router();
 
@@ -11,5 +11,8 @@ router.get('/discord/callback', discordCallback);
 
 // Return current user info based on JWT in httpOnly cookie
 router.get('/me', getMe);
+
+// Clear the JWT cookie and end the session
+router.post('/logout', logout);
 
 export default router;

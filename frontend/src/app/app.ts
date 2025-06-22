@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.scss',
 })
 export class App {
-  protected title = 'frontend';
+  protected title = 'Fabricate';
 
-  constructor(public auth: Auth) {}
+  constructor() { }
 }

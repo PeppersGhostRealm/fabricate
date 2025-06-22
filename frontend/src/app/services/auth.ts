@@ -31,9 +31,13 @@ export class Auth {
       });
   }
 
-  // 3) Clear session (front-end only)
+  // 3) Clear session via backend
   logout(): void {
-    document.cookie = 'token=; Max-Age=0; path=/';
-    this.userSubject.next(null);
+    this.http
+      .post(`${environment.apiUrl}/auth/logout`, {}, { withCredentials: true })
+      .subscribe({
+        next: () => this.userSubject.next(null),
+        error: () => this.userSubject.next(null),
+      });
   }
 }

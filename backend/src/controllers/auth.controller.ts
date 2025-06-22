@@ -106,3 +106,12 @@ export const getMe = (
     res.status(401).send("Invalid token");
   }
 };
+
+// 4) Clear JWT cookie and log user out
+export const logout = (req: Request, res: Response): void => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+  });
+  res.status(200).send({ message: "Logged out" });
+};
