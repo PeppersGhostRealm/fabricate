@@ -9,6 +9,19 @@ export interface Deck {
   content: string;
 }
 
+export interface DeckCard {
+  quantity: number;
+  name: string;
+  set: string;
+  number: string;
+}
+
+export interface DeckDetails {
+  id: number;
+  name: string;
+  cards: DeckCard[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -40,6 +53,12 @@ export class Decks {
 
   delete(id: string): Observable<void> {
     return this.http.delete<void>(`${this.base}/${id}`, {
+      withCredentials: true,
+    });
+  }
+
+  details(id: string): Observable<DeckDetails> {
+    return this.http.get<DeckDetails>(`${this.base}/${id}/details`, {
       withCredentials: true,
     });
   }
